@@ -1,0 +1,24 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "Simple calculator for browser and console",
+  "main": "src/index.js",
+  "bin": "bin/calc.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makewebspace/calculator.git"
+  },
+  "author": "Aidar Shaikhutdin",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/makewebspace/calculator/issues"
+  },
+  "homepage": "https://github.com/makewebspace/calculator#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
