@@ -5,7 +5,8 @@ const maths = {
   '/': (a, b) => a / b,
 };
 
-const operators = Object.keys(maths);
+export const operators = Object.keys(maths);
+
 const isNumber = (num) => typeof num === 'number';
 const isNumbers = (nums = []) => nums.every(isNumber);
 const isOperator = (operator) => operators.includes(operator);
