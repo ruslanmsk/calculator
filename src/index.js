@@ -1,21 +1,8 @@
-const maths = {
-  '+': (a, b) => a + b,
-  '-': (a, b) => a - b,
-  '*': (a, b) => a * b,
-  '/': (a, b) => a / b,
-};
+import parse from './parser.js';
+import calculate from './calculate.js';
 
-const operators = Object.keys(maths);
-const isNumber = (num) => typeof num === 'number';
-const isNumbers = (nums = []) => nums.every(isNumber);
-const isOperator = (operator) => operators.includes(operator);
-const isValid = (left, right, operator) => isNumbers([left, right]) && isOperator(operator);
-const isNotValid = (left, right, operator) => !isValid(left, right, operator);
-
-export default (left, right, operator) => {
-  if (isNotValid(left, right, operator)) {
-    return NaN;
-  }
-  const math = maths[operator];
-  return math(left, right);
+export default (expression, acc = 0) => {
+  const [left, right, operator] = parse(expression);
+  const leftOrAcc = isNaN(left) ? acc : left;
+  return calculate(leftOrAcc, right, operator);
 };

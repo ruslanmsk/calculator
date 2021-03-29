@@ -1,6 +1,5 @@
 import readlineSync from 'readline-sync';
 import calculate from './index.js';
-import parse from './parser.js';
 
 const commands = {
   'exit': () => {
@@ -9,7 +8,7 @@ const commands = {
   },
   'clear': (run) => {
     console.log('> result: 0');
-    return run(0);
+    return run();
   },
 };
 
@@ -23,8 +22,7 @@ const run = (acc = 0) => {
     return doCommand(run);
   }
 
-  const [left, right, operator] = parse(input);
-  const result = calculate(isNaN(left) ? acc : left, right, operator);
+  const result = calculate(input, acc);
 
   console.log(`> result: ${result}`);
 

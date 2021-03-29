@@ -1,5 +1,5 @@
 export default (input) => {
-  const tokens = input.split('').filter((token) => token !== ' ');
+  const tokens = input.split(' ');
 
   if (tokens.length === 2) {
     const [operator, right] = tokens;
