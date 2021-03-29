@@ -2,11 +2,11 @@ import readlineSync from 'readline-sync';
 import calculate from './index.js';
 
 const commands = {
-  'exit': () => {
+  exit: () => {
     console.log('Bye!');
-    return;
+    return false;
   },
-  'clear': (run) => {
+  clear: (run) => {
     console.log('> result: 0');
     return run();
   },
@@ -26,10 +26,10 @@ const run = (acc = 0) => {
 
   console.log(`> result: ${result}`);
 
-  return run(isNaN(result) ? 0 : result);
+  return run(Number.isNaN(result) ? 0 : result);
 };
 
 export default () => {
-  console.log(`Calculator v1.0`);
+  console.log('Calculator v1.0');
   run();
 };

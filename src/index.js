@@ -5,6 +5,6 @@ export { operators };
 
 export default (expression, acc = 0) => {
   const [left, right, operator] = parse(expression);
-  const leftOrAcc = isNaN(left) ? acc : left;
+  const leftOrAcc = Number.isNaN(left) ? acc : left;
   return calculate(leftOrAcc, right, operator);
 };

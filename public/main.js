@@ -1,3 +1,5 @@
+/* eslint no-undef: "error" */
+/* eslint-env browser */
 import calculate, { operators } from '../src/index.js';
 
 const state = { result: '0' };
