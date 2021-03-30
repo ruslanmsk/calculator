@@ -1,35 +1,22 @@
 import readlineSync from 'readline-sync';
 import calculate from './index.js';
 
+const state = { result: 0 };
+
 const commands = {
-  exit: () => {
-    console.log('Bye!');
-    return false;
+  _: (input) => {
+    state.result = calculate(input, state.result);
+    console.log(`= ${state.result}`);
   },
-  clear: (run) => {
-    console.log('> result: 0');
-    return run();
+  clear: () => {
+    state.result = 0;
   },
-};
-
-const isCommand = (cmd) => Object.keys(commands).includes(cmd);
-
-const run = (acc = 0) => {
-  const input = readlineSync.question('> ').trim();
-
-  if (isCommand(input)) {
-    const doCommand = commands[input];
-    return doCommand(run);
-  }
-
-  const result = calculate(input, acc);
-
-  console.log(`> result: ${result}`);
-
-  return run(Number.isNaN(result) ? 0 : result);
+  result: () => console.log(`= ${state.result}`),
+  exit: () => true,
 };
 
 export default () => {
-  console.log('Calculator v1.0');
-  run();
+  console.log('Welcome to Calculator!');
+  readlineSync.promptCLLoop(commands);
+  console.log('Bye!');
 };
