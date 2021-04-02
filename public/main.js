@@ -1,6 +1,11 @@
 /* eslint no-undef: "error" */
 /* eslint-env browser */
-import calculate, { operators } from '../src/index.js';
+import calculate, {
+  isFullExpression,
+  isOperator,
+  hasOperator,
+  getOperator,
+} from '../src/index.js';
 
 const state = { result: '0' };
 
@@ -12,29 +17,23 @@ const commands = {
   '=': () => calculate(state.result).toString(),
 };
 
-const isOperator = (token) => operators.includes(token);
-const getCurrentOperator = () => [...state.result].filter(isOperator).pop();
 const isEmptyState = () => state.result === '0';
 const isCommand = (token) => Object.keys(commands).includes(token);
-const isFullExpression = () => {
-  const currentOperator = getCurrentOperator();
-  return currentOperator && state.result.split(currentOperator).length > 2;
-};
-const hasOperator = (token) => isOperator(token) && getCurrentOperator();
 
 const updateResult = (token) => {
   if (isEmptyState()) {
     return token;
   }
-  if (isFullExpression()) {
+  if (isFullExpression(state.result)) {
     return state.result;
   }
   if (isCommand(token)) {
     const doCommand = commands[token];
     return doCommand();
   }
-  if (hasOperator(token)) {
-    return state.result.replace(getCurrentOperator(), token);
+  if (isOperator(token) && hasOperator(state.result)) {
+    const currentOperator = getOperator(state.result);
+    return state.result.replace(currentOperator, token);
   }
   return `${state.result}${token}`;
 };

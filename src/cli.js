@@ -1,15 +1,16 @@
 import readlineSync from 'readline-sync';
-import calculate from './index.js';
+import calculate, { isFullExpression } from './index.js';
 
-const state = { result: 0 };
+const state = { result: '0' };
 
 const commands = {
   _: (input) => {
-    state.result = calculate(input, state.result);
+    const expression = isFullExpression(input) ? input : `${state.result}${input}`;
+    state.result = calculate(expression);
     console.log(`= ${state.result}`);
   },
   clear: () => {
-    state.result = 0;
+    state.result = '0';
   },
   result: () => console.log(`= ${state.result}`),
   exit: () => true,

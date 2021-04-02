@@ -27,6 +27,6 @@ import calculate from 'calculator';
 const result = calculate('2 + 2');
 console.log(result); // return 4
 
-const newResult = calculate('+ 30', result);
+const newResult = calculate(`${result} + 30`);
 console.log(newResult); // return 34
 ```
