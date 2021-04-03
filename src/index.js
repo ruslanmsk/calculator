@@ -15,7 +15,7 @@ export const isFullExpression = (expression) => {
   return currentOperator && expression.split(currentOperator).length > 2;
 };
 
-const isNumber = (num) => typeof num === 'number' && !Number.isNaN(num);
+const isNumber = (num) => !Number.isNaN(num);
 const isNumbers = (nums = []) => nums.every(isNumber);
 const isValid = (left, right, operator) => isNumbers([left, right]) && isOperator(operator);
 const isNotValid = (...args) => !isValid(...args);
@@ -29,7 +29,7 @@ const calculate = (left, right, operator) => {
 };
 
 const parse = (expression) => {
-  const clearExpression = expression.replace(' ', '');
+  const clearExpression = expression.replace(/\s/g, '');
   const currentOperator = getOperator(clearExpression);
   const operands = clearExpression.split(currentOperator);
 

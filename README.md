@@ -7,7 +7,7 @@ make install
 ```
 
 ## Usage console version
-Run `calc` command in terminal
+Run `calculator` command in terminal
 
 Available commands in program - "exit" and "clear"
 
